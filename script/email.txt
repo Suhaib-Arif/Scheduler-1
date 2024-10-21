@@ -1,0 +1,21 @@
+Dear [Hiring Manager's Name],
+
+I hope this message finds you well. I am writing to express my interest in the Software Developer position at [Company Name] that I discovered through LinkedIn. With 5 months of internship experience in full-stack development, I am confident in my ability to contribute effectively to your team and believe my skills in Python, JavaScript, API development, Machine Learning and cloud technologies align well with the requirements of the role.
+
+During my internships at Transloom and DataPoint IT, I gained hands-on experience in developing scalable RESTful APIs, front-end development, training Machine Learning models, and deploying solutions on AWS. Some of the key skills I bring include:
+
+- Proficiency in Python, JavaScript, and full-stack development using technologies such as FastAPI, Django, and ReactJS.
+- Experience in cloud environments (AWS) for deploying scalable APIs.
+- Training machine learning models, particularly in NLP, using Pytorch for tasks like translation, Sentiment Analysis and Text classification.
+- Strong understanding of databases including MySQL, PostgreSQL, and MongoDB.
+
+Thank you for considering my application. I have attached my resume for your review. I would welcome the opportunity to discuss how my background, skills, and passion for software development make me a strong candidate for this position.
+
+I look forward to hearing from you soon.
+
+Best regards,  
+MD. Suhaib Arif Siddiqui  
+Phone: 9731903548  
+Email: suhaibarifsiddiqui@gmail.com  
+LinkedIn Profile: https://www.linkedin.com/in/suhaib-arif-408716235/  
+GitHub Profile: https://github.com/Suhaib-Arif
