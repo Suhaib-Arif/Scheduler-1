@@ -37,12 +37,13 @@ server.login(FROM, APP_PASSWORD)
 
 pdf_attachment_path = "resumefolder\SuhaibResume.pdf"
 
+error_message = None
 
-def send_message(emails_sent: int):
+def send_message(emails_sent: int, error_message: str):
     client = Client(account_id, auth_token)
     message = client.messages.create(
         from_='+16174090570',  # Use from_ instead of from
-        body=f'Sucessfully applied to {emails_sent} companies today',
+        body=f'Sucessfully applied to {emails_sent} companies today' if not error_message else f'Sucessfully applied to {emails_sent} companies today\n error occoured {error_message}',
         to=to
     )
 
@@ -85,8 +86,10 @@ try:
                     raise e
                 time.sleep(10) 
 except Exception as e:
-    pass
-finally: 
-    send_message(emails_sent=emails_counter)      
+    error_message = f"An error occurred: {str(e)}"
+
+finally:
+
+    send_message(emails_sent=emails_counter, error_message=error_message)
     server.quit()
     db.close()
