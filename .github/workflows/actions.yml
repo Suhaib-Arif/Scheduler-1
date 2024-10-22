@@ -1,8 +1,9 @@
 name: run runner.py
 
 on:
+  workflow_dispatch:
   schedule:
-    - cron: '30 0 * * *'
+    - cron: '45 0 * * *'
 
 jobs:
   build:
