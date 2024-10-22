@@ -35,7 +35,7 @@ server.starttls()
 
 server.login(FROM, APP_PASSWORD)
 
-pdf_attachment_path = "resumefolder\SuhaibResume.pdf"
+pdf_attachment_path = r"script\resumefolder\SuhaibResume.pdf"
 
 error_message = None
 
