@@ -25,7 +25,7 @@ to = os.environ.get("PHONENUMBER")
 
 
 
-with open('email.txt') as file:
+with open('script/email.txt') as file:
     message = file.read()
 
 SUBJECT = "Application for Software Developer Position - MD. Suhaib Arif Siddiqui"
