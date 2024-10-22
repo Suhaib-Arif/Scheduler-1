@@ -2,7 +2,7 @@ name: run runner.py
 
 on:
   schedule:
-    - cron: '00 6 * * *' # At 6:00 on Monday
+    - cron: '50 5 * * *'
 
 jobs:
   build:
