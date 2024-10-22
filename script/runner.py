@@ -1,5 +1,6 @@
 import models
 from database import engine, SessionLocal
+from sqlalchemy import func
 from models import Companies
 import smtplib
 from email.message import EmailMessage
@@ -15,7 +16,7 @@ models.Base.metadata.create_all(bind=engine)
 db = SessionLocal()
 
 
-companies = db.query(Companies).filter(Companies.email_sent==False).all()
+companies = db.query(Companies).filter(Companies.email_sent==False).order_by(func.random()).limit(500).all()
 
 FROM = os.environ.get("FROM")
 APP_PASSWORD = os.environ.get("APP_PASSWORD")
