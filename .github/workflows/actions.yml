@@ -3,7 +3,9 @@ name: run runner.py
 on:
   workflow_dispatch:
   schedule:
-    - cron: '30 3 * * *'
+    - cron: '30 3 * * 1' # 9:00 AM IST on Monday
+    - cron: '30 3 * * 2' # 9:00 AM IST on Tuesday
+    - cron: '30 3 * * 3' # 9:00 AM IST on Wednesday
 
 jobs:
   build:
