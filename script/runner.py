@@ -85,7 +85,7 @@ try:
                 # if e.smtp_code == 550 and "Daily user sending limit exceeded" in e.smtp_error.decode():
                 #     print("Daily sending limit exceeded. Stopping further emails.")
                 #     raise e
-                failed_emails.add(company)
+                failed_emails.add(company.email)
 
                 time.sleep(10) 
 except Exception as e:
