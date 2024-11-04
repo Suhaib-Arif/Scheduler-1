@@ -38,13 +38,13 @@ server.login(FROM, APP_PASSWORD)
 
 pdf_attachment_path = os.path.join("script", "resumefolder", "SuhaibResume.pdf")
 
-error_message = None
+failed_emails = {}
 
-def send_message(emails_sent: int, error_message: str):
+def send_message(emails_sent: int, failed_emails: str):
     client = Client(account_id, auth_token)
     message = client.messages.create(
         from_='+16174090570',  # Use from_ instead of from
-        body=f'Sucessfully applied to {emails_sent} companies today' if not error_message else f'Sucessfully applied to {emails_sent} companies today\n error occoured {error_message}',
+        body=f'Sucessfully applied to {emails_sent} companies today' if not failed_emails else f'Sucessfully applied to {emails_sent} companies today\n Could not send to the following {failed_emails}',
         to=to
     )
 
@@ -80,17 +80,19 @@ try:
                 db.commit()  # Commit the update to the database
 
                 break  
-            except smtplib.SMTPDataError as e:
+            except Exception as e:
                 print(f"Error sending to {company.email}: {e}")
-                if e.smtp_code == 550 and "Daily user sending limit exceeded" in e.smtp_error.decode():
-                    print("Daily sending limit exceeded. Stopping further emails.")
-                    raise e
+                # if e.smtp_code == 550 and "Daily user sending limit exceeded" in e.smtp_error.decode():
+                #     print("Daily sending limit exceeded. Stopping further emails.")
+                #     raise e
+                failed_emails.add(company)
+
                 time.sleep(10) 
 except Exception as e:
-    error_message = f"An error occurred: {str(e)}"
+    pass
 
 finally:
 
-    send_message(emails_sent=emails_counter, error_message=error_message)
+    send_message(emails_sent=emails_counter, failed_emails=failed_emails)
     server.quit()
     db.close()
