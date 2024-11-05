@@ -38,7 +38,7 @@ server.login(FROM, APP_PASSWORD)
 
 pdf_attachment_path = os.path.join("script", "resumefolder", "SuhaibResume.pdf")
 
-failed_emails = {}
+failed_emails = set()
 
 def send_message(emails_sent: int, failed_emails: str):
     client = Client(account_id, auth_token)
@@ -50,8 +50,8 @@ def send_message(emails_sent: int, failed_emails: str):
 
 emails_counter = 0
 
-try:   
-    for company in tqdm(companies):
+for company in tqdm(companies):
+    try:   
         email = message.replace("[Hiring Manager's Name]", company.HRname).replace("[Company Name]", company.company)
         
         msg = EmailMessage()
@@ -85,14 +85,12 @@ try:
                 # if e.smtp_code == 550 and "Daily user sending limit exceeded" in e.smtp_error.decode():
                 #     print("Daily sending limit exceeded. Stopping further emails.")
                 #     raise e
+                time.sleep(10) 
                 failed_emails.add(company.email)
 
-                time.sleep(10) 
-except Exception as e:
-    pass
+    except Exception as e:
+        pass
 
-finally:
-
-    send_message(emails_sent=emails_counter, failed_emails=failed_emails)
-    server.quit()
-    db.close()
+send_message(emails_sent=emails_counter, failed_emails="\n".join(failed_emails))
+server.quit()
+db.close()
